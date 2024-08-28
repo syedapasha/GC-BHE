@@ -163,7 +163,7 @@ plot_null = function(dist, ix) {
 	plot_eps(paste0(test,"null"))
 	par(mar=c(1.6, 1.6, 1.5, 0.1))
 
-	hist(dist[,ix], breaks=50, xlim=c(min(dist),max(dist)), ylim=c(0,max(h1$counts, h2$counts)), cex.axis=1.2, cex.lab=1.5, cex.main=1.8, xlab="", ylab="", main=test)
+	hist(dist[,ix], breaks=31, xlim=c(min(dist),max(dist)), ylim=c(0,max(h1$counts, h2$counts)), cex.axis=1.2, cex.lab=1.5, cex.main=1.8, xlab="", ylab="", main=test)
 	box()
 	
 	dev.off()
