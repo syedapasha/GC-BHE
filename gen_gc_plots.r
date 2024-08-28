@@ -39,15 +39,3 @@ phi <- sapply(1:p, function(el) exp(-be*u) * ((be*u)^(el-1)) * be / gamma(el))
 HIR <- phi %*% parM$alf
 
 plot_hir(u, HIR, "hir1")
-
-
-#*** Null distributions ***#
-plot_null(cbind(DLRT_n, DMI_n), 1)
-plot_null(cbind(DLRT_n, DMI_n), 2)
-
-#*** QQ-plot of Null distributions ***#
-plot_QQ_null(DLRT_n, DMI_n) 
-  
-
-#*** ROC ***#
-plot_roc(alf, S, S_mi)

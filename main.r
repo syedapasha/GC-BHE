@@ -122,8 +122,16 @@ DMI_a <- sort(TS[2,], decreasing = FALSE)
 S_mi <- 1 - sapply(t_mi, function(t_j) which(DMI_a > t_j, arr.ind = TRUE)[1]) / nR
 
 
-source("plots.r")
-plot_roc(alf, S, S_mi)
-
-
 save(DLRT_n, DLRT_a, DMI_n, DMI_a, file="res.RData")
+
+
+#*** Null distributions ***#
+plot_null(cbind(DLRT_n, DMI_n), 1)
+plot_null(cbind(DLRT_n, DMI_n), 2)
+
+#*** QQ-plot of Null distributions ***#
+plot_QQ_null(DLRT_n, DMI_n) 
+  
+
+#*** ROC ***#
+plot_roc(alf, S, S_mi)
