@@ -58,14 +58,10 @@ for (i in 1:p) {
 }
 
 
-# #*** uncomment for plots
-# load("res.RData")
-# source("plots.r")
+# *** 
+# uncomment for plots
 # source("gen_gc_plots.r")
-# 
-# browser()
-# #*** 
-
+# ***
 
 
 
