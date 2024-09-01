@@ -24,14 +24,8 @@ em_vHL = function(p, pp, be, T, eps) {
 		}
 
 
-		# recursive formula to compute integral of x on interval [0,T]
-		# cannot be implemented using sapply
-		# B <- matrix(0,p,d)
-		# B[1,] <- sapply(1:d, function(j) M[j] - sum(exp(-be*(T - pp[[j]]))))
-		# B[2:p,] <- sapply(1:d, function(j) sapply(2:p, function(el) B[el-1,j] - sum(exp(-be*(T - pp[[j]])) * (be*(T - pp[[j]]))^(el-1)) / gamma(el)))
-
 		# faster way to compute integral of x on interval [0,T]
-		B <- sapply(1:d, function(j) sapply(1:p, function(el) (-1)^(2*(el-1))*(M[j] - sum(sapply(0:(el-1), function(q) exp(-be*(T - pp[[j]])) * ((be*(T - pp[[j]]))^q) / factorial(q))))))
+		B <- sapply(1:d, function(j) sapply(1:p, function(el) M[j] - sum(sapply(0:(el-1), function(q) exp(-be*(T - pp[[j]])) * ((be*(T - pp[[j]]))^q) / factorial(q)))))
 		
 		grad_B <- c(T, c(B))				# second piece of score function
 
@@ -105,14 +99,8 @@ em_sHL = function(p, pp, be, T, eps) {
 	xi <- rbind(xi, t(x))
 
 
-	# recursive formula to compute integral of x on interval [0,T]
-	# cannot be implemented using sapply
-	# B <- rep(0,p)
-	# B[1] <- M - sum(exp(-be*(T - pp)))
-	# B[2:p] <- sapply(2:p, function(el) B[el-1] - sum(exp(-be*(T - pp)) * (be*(T - pp))^(el-1)) / gamma(el))
-
 	# faster way to compute integral of x on interval [0,T]
-	B <- sapply(1:p, function(el) (-1)^(2*(el-1)) * (M - sum(sapply(0:(el-1), function(q) exp(-be*(T-pp)) * ((be*(T-pp))^q) / factorial(q)))))
+	B <- sapply(1:p, function(el) M - sum(sapply(0:(el-1), function(q) exp(-be*(T-pp)) * ((be*(T-pp))^q) / factorial(q))))
 
 	grad_B <- c(T, B)						# second piece of score function
 
