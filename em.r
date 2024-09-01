@@ -25,7 +25,8 @@ em_vHL = function(p, pp, be, T, eps) {
 
 
 		# faster way to compute integral of x on interval [0,T]
-		B <- sapply(1:d, function(j) sapply(1:p, function(el) M[j] - sum(sapply(0:(el-1), function(q) exp(-be*(T - pp[[j]])) * ((be*(T - pp[[j]]))^q) / factorial(q)))))
+		dT <- T - pp[[j]]
+		B <- sapply(1:d, function(j) sapply(1:p, function(el) M[j] - sum(sapply(1:el, function(q) exp(-be*dT) * ((be*dT)^(q-1)) / gamma(q)))))
 		
 		grad_B <- c(T, c(B))				# second piece of score function
 
@@ -100,7 +101,8 @@ em_sHL = function(p, pp, be, T, eps) {
 
 
 	# faster way to compute integral of x on interval [0,T]
-	B <- sapply(1:p, function(el) M - sum(sapply(0:(el-1), function(q) exp(-be*(T-pp)) * ((be*(T-pp))^q) / factorial(q))))
+	dT <- T - pp
+	B <- sapply(1:p, function(el) M - sum(sapply(1:el, function(q) exp(-be*dT) * ((be*dT)^(q-1)) / gamma(q))))
 
 	grad_B <- c(T, B)						# second piece of score function
 
