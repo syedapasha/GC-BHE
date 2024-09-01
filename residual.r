@@ -46,6 +46,11 @@ residual_vHL <- function(pp, cc, Al, be) {
 
 
 
+
+#-------------------------------------------------------
+# time transformation for scalar Hawkes-Laguerre process
+#-------------------------------------------------------
+
 residual_sHL <- function(pp, cc, Al, be) {
 
 	p <- length(Al)
