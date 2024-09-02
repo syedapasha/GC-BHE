@@ -53,8 +53,8 @@ em_vHL = function(p, pp, be, T, eps) {
 			
 			# compute log-likelihood (ratio) iterate
 			L_old <- L
-			L <- sum(log(mu)) - t(tht) %*% grad_B	
-			err <- abs((L - L_old) / L)
+			L <- sum(log(mu)) - t(tht) %*% grad_B
+			err <- abs((L - L_old) / L) 
 			
 			L_arr[[k]] <- c(L_arr[[k]], L)
 		}
@@ -113,7 +113,7 @@ em_sHL = function(p, pp, be, T, eps) {
 	tht <- as.matrix(c(runif(1,0,.1), rep(1/(p+1), p)))		
 
 	mu <- t(tht) %*% xi					# intensity function evaluated at event times 
-	L <- sum(log(mu)) + t(tht) %*% grad_B
+	L <- sum(log(mu)) - t(tht) %*% grad_B
 	
 	err <- 1							# relative error
 
@@ -129,7 +129,7 @@ em_sHL = function(p, pp, be, T, eps) {
 		
 		# compute log-likelihood (ratio) iterate
 		L_old <- L
-		L <- sum(log(mu)) + t(tht) %*% grad_B	
+		L <- sum(log(mu)) - t(tht) %*% grad_B
 		err <- abs((L - L_old) / L)
 		
 		L_arr <- c(L_arr, L)
