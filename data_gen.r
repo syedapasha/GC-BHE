@@ -37,7 +37,7 @@ sim_vHL = function(T, cc, A, be) {
 		lam <- cc + sapply(1:d, function(x) sum(A[x,,]*sum_phi))
 
 		I <- sum(lam)
-		Is <- I + sum(A[,k,]) 
+		Is <- I + sum(A[,k,1]) 
 		
 		while (s<T & bProceed==0) {
 
